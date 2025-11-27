@@ -5,6 +5,7 @@
   <title>Enzo Román | Desarrollo Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Desarrollo sitios web profesionales para docentes, emprendimientos y proyectos educativos." />
+
   <style>
     :root {
       --color-bg: #050816;
@@ -49,6 +50,7 @@
       padding: 1.5rem 1.5rem 3rem;
     }
 
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
@@ -71,7 +73,7 @@
       gap: 0.75rem;
     }
 
-    /* NUEVO LOGO ER|devs */
+    /* LOGO ER|devs */
     .logo-wordmark {
       display: flex;
       align-items: baseline;
@@ -155,6 +157,7 @@
       font-size: 1rem;
     }
 
+    /* MAIN GENERAL */
     main {
       margin-top: 1.5rem;
       display: flex;
@@ -162,7 +165,7 @@
       gap: 2.5rem;
     }
 
-    /* Hero */
+    /* HERO */
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
@@ -283,7 +286,6 @@
       color: var(--color-text-muted);
       margin-bottom: 0.9rem;
     }
-
     .hero-kpis {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -310,7 +312,7 @@
       color: var(--color-text-muted);
     }
 
-    /* Chips de características */
+    /* Chips */
     .chip {
       display: inline-flex;
       flex-wrap: wrap;
@@ -326,7 +328,7 @@
       border: 1px solid rgba(148, 163, 184, 0.33);
     }
 
-    /* TAG VERDE DESTACADO (ejemplos de trabajo) */
+    /* TAG verde */
     .portfolio-tag {
       display: inline-flex;
       align-items: center;
@@ -340,7 +342,7 @@
       box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.6);
     }
 
-    /* Section base */
+    /* Section */
     section {
       background: rgba(15, 23, 42, 0.92);
       border-radius: var(--radius-xl);
@@ -452,20 +454,14 @@
       background: radial-gradient(circle at 30% 0, rgba(74, 222, 128, 1), rgba(34, 197, 94, 0.9));
       color: #022c22;
       box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-      position: relative;
-      z-index: 1;
     }
 
     .step-title {
       font-weight: 600;
       margin-bottom: 0.2rem;
-      position: relative;
-      z-index: 1;
     }
 
     .steps p {
-      position: relative;
-      z-index: 1;
       color: var(--color-text-muted);
     }
 
@@ -519,7 +515,6 @@
       color: var(--color-text-muted);
       font-size: 0.78rem;
     }
-
     /* Contacto */
     .contact-layout {
       display: grid;
@@ -610,15 +605,75 @@
       color: #22c55e;
     }
 
-    /* Responsive */
+    /* FAQ — Botón principal */
+    .faq-toggle-btn {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      text-align: left;
+      transition: var(--transition);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+
+    .faq-toggle-btn:hover {
+      background: rgba(34,197,94,0.15);
+      border-color: rgba(74,222,128,0.7);
+    }
+
+    /* Contenedor del FAQ */
+    .faq-container {
+      margin-top: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    /* Accordion por pregunta */
+    .faq-item {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 1rem;
+      border: 1px solid rgba(148,163,184,0.3);
+      overflow: hidden;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background: rgba(34,197,94,0.10);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0.8rem 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      border-top: 1px solid rgba(148,163,184,0.25);
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
         gap: 1.8rem;
-      }
-
-      .hero-text {
-        padding-right: 0;
       }
 
       .hero-card {
@@ -635,14 +690,7 @@
 
       nav {
         width: 100%;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 0.15rem;
-      }
-
-      nav::-webkit-scrollbar {
-        display: none;
       }
 
       .steps {
@@ -657,64 +705,33 @@
       .contact-layout {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      main {
-        gap: 2rem;
-      }
-
-      section + section {
-        margin-top: 1.5rem;
-      }
     }
 
     @media (max-width: 640px) {
-      .page {
-        padding: 1rem 1rem 2.5rem;
+      .hero-card {
+        display: none;
       }
 
-      section {
-        padding: 1.35rem 1.1rem;
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-      }
-
-      .grid-3,
-      .steps {
+      .grid-3 {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .hero-meta {
-        font-size: 0.76rem;
-        gap: 0.6rem;
+      .steps {
+        grid-template-columns: minmax(0, 1fr);
       }
 
       header {
         position: static;
         margin-bottom: 1rem;
       }
-
-      .hero-cta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .contact-info {
-        gap: 0.4rem;
-      }
-
-      .logo-er,
-      .logo-devs {
-        font-size: 1.05rem;
-      }
-
-      /* Para que en celular no se vea tan cargado: oculto la tarjeta lateral */
-      .hero-card {
-        display: none;
-      }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
+
+    <!-- HEADER -->
     <header>
       <div class="brand">
         <div class="logo-wordmark">
@@ -727,11 +744,13 @@
           <span>Desarrollo Web & Proyectos Digitales</span>
         </div>
       </div>
+
       <nav>
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#contacto">Contacto</a>
+        <a href="#faq">FAQ</a>
         <a class="btn-primary" href="https://wa.me/59891619677" target="_blank" rel="noopener">
           Hablemos <span>↗</span>
         </a>
@@ -746,21 +765,24 @@
             <span class="pill-dot"></span>
             Desarrollo web a medida para educación y emprendimientos.
           </div>
+
           <h1>
             Sitios web <span>claros, modernos</span> y listos para comunicar tu proyecto.
           </h1>
+
           <p>
             Soy Enzo, docente y desarrollador web. Diseño y construyo páginas pensadas para
             instituciones educativas, emprendimientos y proyectos culturales que necesitan
             una presencia digital profesional, sin complicarse con lo técnico.
           </p>
+
           <div class="hero-cta">
-            <a class="btn-primary" href="https://wa.me/59891619677?text=Hola%20Enzo,%20quiero%20consultar%20por%20un%20sitio%20web" target="_blank" rel="noopener">
-              Solicitar presupuesto
-              <span>💬</span>
+            <a class="btn-primary" href="https://wa.me/59891619677?text=Hola%20Enzo,%20quiero%20consultar%20por%20un%20sitio%20web" target="_blank">
+              Solicitar presupuesto <span>💬</span>
             </a>
             <span class="tagline">Respuesta rápida y acompañamiento durante todo el proceso.</span>
           </div>
+
           <div class="hero-meta">
             <span>Enfoque pedagógico y comunicacional.</span>
             <span>Diseños adaptables a celular y computadora.</span>
@@ -770,35 +792,30 @@
 
         <aside class="hero-card">
           <div class="hero-glow"></div>
+
           <div class="hero-card-inner">
             <div class="hero-card-title">Tu web como pieza clave de tu proyecto</div>
-            <div class="hero-card-subtitle">
-              Una pequeña inversión que ordena tu comunicación, centraliza información
-              y te ayuda a llegar a más personas.
-            </div>
+            <div class="hero-card-subtitle">Una pequeña inversión que ordena tu comunicación y te acerca a más personas.</div>
+
             <div class="hero-kpis">
               <div class="kpi">
                 <strong>Webs claras</strong>
                 <span>Texto pensado para que cualquiera entienda qué hacés.</span>
               </div>
+
               <div class="kpi">
                 <strong>Responsive</strong>
                 <span>Se ve bien en celulares, tablets y computadoras.</span>
               </div>
+
               <div class="kpi">
                 <strong>Seguimiento</strong>
                 <span>No solo te entrego el sitio: te enseño a usarlo.</span>
               </div>
             </div>
-            <div class="hero-badges">
-              <span class="hero-badge">Docente + desarrollador</span>
-              <span class="hero-badge">Enfoque en educación y cultura</span>
-              <span class="hero-badge">Ideal para instituciones y emprendimientos</span>
-            </div>
           </div>
         </aside>
       </section>
-
       <!-- SERVICIOS -->
       <section id="servicios">
         <div class="section-header">
@@ -808,46 +825,55 @@
             y un diseño que respeta tu identidad visual.
           </div>
         </div>
+
         <div class="grid-3">
           <div class="card">
             <h3>Sitio web institucional</h3>
             <p>
-              Ideal para liceos, instituciones educativas, talleres, ONG y proyectos
-              culturales que necesitan una presencia digital organizada.
+              Ideal para liceos, instituciones educativas, ONG, talleres y proyectos culturales
+              que necesitan una presencia digital organizada, clara y profesional.
             </p>
+
             <div class="portfolio-tag">
               Modelo adaptable para liceos, proyectos educativos, instituciones, etc.
             </div>
+
             <div class="chip">
               <span>Secciones personalizadas</span>
               <span>Noticias / Novedades</span>
               <span>Formulario de contacto</span>
             </div>
           </div>
+
           <div class="card">
             <h3>Landing page para eventos o servicios</h3>
             <p>
-              Una página única y directa para promocionar un curso, taller, proyecto
-              o servicio específico, con llamados claros a la acción.
+              Una página directa y enfocada para promocionar un curso, taller, evento o servicio específico.
+              Ideal para captar la atención y convertir visitas en consultas.
             </p>
+
             <div class="portfolio-tag">
               Ideal para talleres, cursos, charlas y eventos específicos.
             </div>
+
             <div class="chip">
               <span>Enlace a redes</span>
               <span>CTA a WhatsApp</span>
               <span>Optimizada para celular</span>
             </div>
           </div>
+
           <div class="card">
             <h3>Portafolio profesional</h3>
             <p>
-              Web personal para mostrar tu trabajo como docente, artista, freelancer
-              o emprendedor, con un enfoque visual cuidado.
+              Sitio visual y moderno para mostrar tu trabajo como docente, artista, freelancer
+              o emprendedor. Centrado en tu identidad, trayectoria y proyectos.
             </p>
+
             <div class="portfolio-tag">
               Pensado para docentes, artistas y personas que quieren visibilizar su trabajo.
             </div>
+
             <div class="chip">
               <span>Galería de proyectos</span>
               <span>Biografía</span>
@@ -862,41 +888,40 @@
         <div class="section-header">
           <div class="section-title">Cómo trabajamos</div>
           <div class="section-subtitle">
-            Un proceso simple, transparente y con seguimiento, para que sepas en todo momento
-            qué está pasando con tu sitio web.
+            Un proceso claro, simple y acompañado en cada paso.
           </div>
         </div>
+
         <div class="steps">
           <div>
             <div class="step-number">1</div>
             <div class="step-title">Relevamiento</div>
             <p>
-              Conversamos sobre tu proyecto, definimos objetivos, público y qué tipo
-              de sitio web necesitás.
+              Conversamos sobre tu idea, tus objetivos, el público al que querés llegar y el tipo de sitio que necesitás.
             </p>
           </div>
+
           <div>
             <div class="step-number">2</div>
             <div class="step-title">Propuesta</div>
             <p>
-              Te presento estructura, secciones, tiempos estimados y presupuesto,
-              con opciones según tu realidad.
+              Presento estructura, secciones, tiempos y un presupuesto ajustado a tu realidad.
             </p>
           </div>
+
           <div>
             <div class="step-number">3</div>
             <div class="step-title">Desarrollo</div>
             <p>
-              Construcción del sitio, ajustes de diseño y contenido, pruebas en
-              diferentes dispositivos y navegadores.
+              Diseño y programación del sitio. Ajustes visuales, revisión de contenidos y pruebas en distintos dispositivos.
             </p>
           </div>
+
           <div>
             <div class="step-number">4</div>
             <div class="step-title">Entrega y soporte</div>
             <p>
-              Publicación del sitio y una guía básica para que sepas cómo usarlo.
-              Opciones de soporte y mantenimiento.
+              Publicación del sitio, guía de uso y un mes de soporte técnico para asegurar que todo funcione perfecto.
             </p>
           </div>
         </div>
@@ -907,40 +932,39 @@
         <div class="section-header">
           <div class="section-title">Sobre mí</div>
           <div class="section-subtitle">
-            Integro la mirada técnica con la experiencia docente y el trabajo con
-            proyectos educativos, culturales y sociales.
+            Docente, desarrollador web y creador de proyectos educativos y culturales.
           </div>
         </div>
+
         <div class="about-layout">
           <div>
             <p>
-              Soy Enzo Román, profesor de Historia y Ciencias de la Computación,
-              con experiencia en proyectos educativos, robótica, inteligencia
-              artificial y desarrollo de recursos digitales para instituciones.
+              Soy Enzo Román, profesor de Historia y Ciencias de la Computación. Trabajo en educación,
+              tecnología, proyectos culturales y desarrollo de recursos digitales para instituciones.
             </p>
             <p>
-              Entiendo las necesidades de comunicación de liceos, centros de
-              formación, colectivos sociales y emprendimientos, porque trabajo
-              directamente en el aula y en territorio.
+              Entiendo las necesidades comunicacionales de liceos, centros educativos, colectivos sociales
+              y emprendedores porque trabajo directamente en el aula y en territorio.
             </p>
             <p>
-              Mi objetivo es que tu sitio web sea una herramienta concreta:
-              que ordene información, que facilite el contacto y que represente
-              la identidad de tu proyecto.
+              Mi objetivo es que tu sitio web te represente, comunique con claridad y sea una herramienta útil.
             </p>
           </div>
+
           <div class="about-highlights">
             <div>
               <strong>¿Qué aporto como desarrollador?</strong>
-              <span>Lenguaje claro, acompañamiento pedagógico y visión estratégica de comunicación.</span>
+              <span>Visión pedagógica, comunicación clara y acompañamiento estratégico.</span>
             </div>
+
             <div>
               <strong>¿Con quiénes trabajo?</strong>
-              <span>Docentes, instituciones educativas, emprendimientos locales, proyectos culturales y sociales.</span>
+              <span>Docentes, centros educativos, emprendedores, proyectos culturales y sociales.</span>
             </div>
+
             <div>
               <strong>Formato de trabajo</strong>
-              <span>Reuniones virtuales o presenciales (según disponibilidad), entregas por etapas y revisión conjunta.</span>
+              <span>Reuniones virtuales o presenciales, entregas por etapas y revisión conjunta.</span>
             </div>
           </div>
         </div>
@@ -951,76 +975,218 @@
         <div class="section-header">
           <div class="section-title">¿Hablamos de tu sitio web?</div>
           <div class="section-subtitle">
-            Contame brevemente tu idea y te respondo con una propuesta ajustada a tu
-            realidad y tus objetivos.
+            Contame brevemente tu idea y te respondo con una propuesta ajustada.
           </div>
         </div>
+
         <div class="contact-layout">
           <div class="contact-info">
             <p>
-              Podés escribirme directamente por WhatsApp o correo electrónico, o
-              completar el formulario y me pondré en contacto contigo.
+              Podés escribirme directamente por WhatsApp o correo electrónico,
+              o completar el formulario.
             </p>
-            <p>
-              <strong>WhatsApp:</strong>
-              <a href="https://wa.me/59891619677" target="_blank" rel="noopener">
-                +598 91 619 677
-              </a>
+
+            <p><strong>WhatsApp:</strong>
+              <a href="https://wa.me/59891619677" target="_blank">+598 91 619 677</a>
             </p>
-            <p>
-              <strong>Email:</strong>
+
+            <p><strong>Email:</strong>
               <a href="mailto:enzoromanal@gmail.com">enzoromanal@gmail.com</a>
             </p>
+
             <p>
-              En el mensaje, podés incluir:
-              <br />• Tipo de proyecto (institucional, portafolio, landing).<br />
-              • Si ya tenés logo o identidad visual.<br />
-              • Plazo aproximado en el que te gustaría publicar.
+              Información útil para incluir:<br>
+              • Tipo de proyecto.<br>
+              • Si tenés logo o estética definida.<br>
+              • Plazo aproximado de publicación.
             </p>
           </div>
+
           <form onsubmit="handleSubmit(event)">
             <label>
               Nombre
-              <input type="text" id="nombre" placeholder="Tu nombre o el de tu institución" required />
+              <input type="text" id="nombre" required>
             </label>
+
             <label>
               Correo electrónico
-              <input type="email" id="email" placeholder="tunombre@ejemplo.com" required />
+              <input type="email" id="email" required>
             </label>
+
             <label>
               Mensaje
               <textarea id="mensaje" placeholder="Contame brevemente qué tipo de sitio necesitás."></textarea>
             </label>
-            <button type="submit" class="btn-secondary">
-              Enviar mensaje (abre correo)
-            </button>
+
+            <button type="submit" class="btn-secondary">Enviar mensaje</button>
           </form>
         </div>
       </section>
 
-      <footer>
-        © <span>Enzo Román</span> · Desarrollo Web & Proyectos Educativos
-      </footer>
+      <!-- FAQ -->
+      <section id="faq">
+        <button class="faq-toggle-btn" onclick="toggleFAQ()">Preguntas frecuentes</button>
+
+        <div class="faq-container" id="faqContainer">
+
+          <!-- FAQ ITEMS -->
+          <div class="faq-item">
+            <button class="faq-question">¿Qué servicios ofrecen?</button>
+            <div class="faq-answer">
+              Ofrezco desarrollo de sitios web estáticos, profesionales y rápidos, con posibilidad
+              de escalar en el futuro según tus necesidades. Trabajo en sitios institucionales,
+              landing pages y portafolios profesionales, con acompañamiento en estructura,
+              contenidos y diseño.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Cuánto demora la creación de un sitio web?</button>
+            <div class="faq-answer">
+              Una landing page puede estar lista entre 5 y 10 días hábiles.  
+              Un sitio institucional o portafolio lleva entre 2 y 4 semanas según su complejidad.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Necesito tener logo o identidad visual antes de empezar?</button>
+            <div class="faq-answer">
+              No es obligatorio. Si ya tenés identidad visual, la uso.  
+              Si no, puedo sugerirte paletas, tipografías y estilos coherentes con tu proyecto.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Cómo se realiza el pago?</button>
+            <div class="faq-answer">
+              Trabajo con un adelanto al iniciar y el resto al entregar el sitio.  
+              Para instituciones puedo adaptar la modalidad según necesidad.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Podré editar el contenido por mi cuenta?</button>
+            <div class="faq-answer">
+              Sí. Podés optar por:<br>
+              • Que yo gestione los cambios según lo acordado.<br>
+              • Autogestionar el sitio: te entrego todo listo y una guía básica de edición.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Incluye hosting y dominio?</button>
+            <div class="faq-answer">
+              Podés encargarte vos del hosting y dominio, o puedo gestionarlo yo como parte del presupuesto final.  
+              Te asesoro sobre las mejores opciones.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿El sitio se ve bien en el celular?</button>
+            <div class="faq-answer">
+              Sí. Todos los sitios son totalmente responsive y testeo cada diseño en distintos dispositivos.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Qué información necesito para empezar?</button>
+            <div class="faq-answer">
+              Nombre del proyecto, textos principales, fotos o materiales disponibles y enlaces a redes.  
+              Si no tenés todo definido, te ayudo a organizarlo.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Ofrecen soporte o mantenimiento?</button>
+            <div class="faq-answer">
+              Sí. Incluyo un mes de soporte técnico gratuito.  
+              Luego podés solicitar mantenimiento puntual o mensual según tus necesidades.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Puedo agregar más secciones en el futuro?</button>
+            <div class="faq-answer">
+              Sí. Los sitios están pensados para crecer con tu proyecto: se pueden agregar secciones, páginas
+              nuevas o funciones especiales.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Qué pasa si no sé qué tipo de sitio necesito?</button>
+            <div class="faq-answer">
+              Te guío evaluando objetivos, público y recursos.  
+              A partir de eso te recomiendo la mejor estructura para tu proyecto.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Trabajan con empresas de cualquier tamaño?</button>
+            <div class="faq-answer">
+              Mi enfoque principal está en emprendimientos pequeños y medianos, instituciones educativas
+              y proyectos culturales.  
+              Proyectos más grandes pueden evaluarse según tiempos y requerimientos.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">¿Ofrecen garantías?</button>
+            <div class="faq-answer">
+              Sí. Todos los proyectos incluyen garantía de funcionamiento y un mes de soporte técnico para
+              asegurar que todo esté perfecto.  
+              Luego podés contratar mantenimiento puntual o mensual.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </main>
+
+    <footer>
+      © <span>Enzo Román</span> · Desarrollo Web & Proyectos Educativos
+    </footer>
+
   </div>
 
+  <!-- SCRIPT FAQ -->
   <script>
+    function toggleFAQ() {
+      const container = document.getElementById("faqContainer");
+      container.style.display = container.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Acordeón interno
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const answer = btn.nextElementSibling;
+
+        // Cierra los demás
+        document.querySelectorAll(".faq-answer").forEach((a) => {
+          if (a !== answer) a.style.display = "none";
+        });
+
+        // Alterna el actual
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
+
     function handleSubmit(e) {
       e.preventDefault();
-      const nombre = document.getElementById("nombre").value || "";
-      const email = document.getElementById("email").value || "";
-      const mensaje = document.getElementById("mensaje").value || "";
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const mensaje = document.getElementById("mensaje").value;
 
       const asunto = encodeURIComponent("Consulta por desarrollo web");
       const cuerpo = encodeURIComponent(
-        "Nombre: " + nombre +
-        "\nEmail: " + email +
-        "\n\nMensaje:\n" + mensaje
+        "Nombre: " + nombre + "\nEmail: " + email + "\n\nMensaje:\n" + mensaje
       );
 
-      window.location.href =
-        "mailto:enzoromanal@gmail.com?subject=" + asunto + "&body=" + cuerpo;
+      window.location.href = "mailto:enzoromanal@gmail.com?subject=" + asunto + "&body=" + cuerpo;
     }
   </script>
+
 </body>
 </html>
+
