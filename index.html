@@ -300,22 +300,6 @@
       color: var(--color-text-muted);
     }
 
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-badge {
-      font-size: 0.72rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--color-text-muted);
-    }
-
     /* Section base */
     section {
       background: rgba(15, 23, 42, 0.92);
@@ -404,22 +388,60 @@
       font-size: 0.8rem;
     }
 
+    .steps > div {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 0.9rem;
+      padding: 0.8rem 0.8rem 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .steps > div::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(74, 222, 128, 0.18), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .steps > div:hover {
+      transform: translateY(-2px);
+      border-color: rgba(74, 222, 128, 0.7);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
+    }
+
     .step-number {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid rgba(74, 222, 128, 0.95);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
-      margin-bottom: 0.35rem;
-      background: rgba(15, 23, 42, 0.95);
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
+      background: radial-gradient(circle at 30% 0, rgba(74, 222, 128, 1), rgba(34, 197, 94, 0.9));
+      color: #022c22;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+      position: relative;
+      z-index: 1;
     }
 
     .step-title {
       font-weight: 600;
       margin-bottom: 0.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .steps p {
+      position: relative;
+      z-index: 1;
+      color: var(--color-text-muted);
     }
 
     /* Sobre mí */
@@ -438,16 +460,42 @@
     .about-highlights {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.7rem;
       font-size: 0.8rem;
+    }
+
+    .about-highlights > div {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 0.9rem;
+      padding: 0.7rem 0.85rem 0.75rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+    }
+
+    .about-highlights > div::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #4ade80, #22c55e, #0ea5e9);
     }
 
     .about-highlights strong {
       display: block;
-      margin-bottom: 0.1rem;
+      margin-bottom: 0.15rem;
+      color: #e5e7eb;
     }
 
-    /* Portafolio */
+    .about-highlights span {
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+    }
+
+    /* Trabajos (antes Portafolio) */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -456,12 +504,19 @@
     }
 
     .portfolio-tag {
-      font-size: 0.72rem;
-      color: var(--color-text-muted);
-      margin-top: 0.3rem;
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      margin-top: 0.55rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(74, 222, 128, 0.8);
+      color: #bbf7d0;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.6);
     }
 
-    /* Carrusel */
+    /* Carrusel (CSS queda por si en el futuro lo volvés a usar, pero ahora no hay HTML) */
     .portfolio-carousel {
       margin-top: 1.3rem;
     }
@@ -743,7 +798,7 @@
       <nav>
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
-        <a href="#portafolio">Portafolio</a>
+        <a href="#trabajos">Trabajos</a>
         <a href="#contacto">Contacto</a>
         <a class="btn-primary" href="https://wa.me/59891619677" target="_blank" rel="noopener">
           Hablemos <span>↗</span>
@@ -799,7 +854,7 @@
                 <span>Se ve bien en celulares, tablets y computadoras.</span>
               </div>
               <div class="kpi">
-                <strong>Acompañamiento</strong>
+                <strong>Seguimiento</strong>
                 <span>No solo te entrego el sitio: te enseño a usarlo.</span>
               </div>
             </div>
@@ -866,7 +921,7 @@
         <div class="section-header">
           <div class="section-title">Cómo trabajamos</div>
           <div class="section-subtitle">
-            Un proceso simple, transparente y acompañado, para que sepas en todo momento
+            Un proceso simple, transparente y con seguimiento, para que sepas en todo momento
             qué está pasando con tu sitio web.
           </div>
         </div>
@@ -950,10 +1005,10 @@
         </div>
       </section>
 
-      <!-- PORTAFOLIO -->
-      <section id="portafolio">
+      <!-- TRABAJOS (antes Portafolio) -->
+      <section id="trabajos">
         <div class="section-header">
-          <div class="section-title">Portafolio</div>
+          <div class="section-title">Trabajos</div>
           <div class="section-subtitle">
             Algunos tipos de proyectos que puedo desarrollar. A medida que avancemos,
             puedo ir sumando ejemplos reales con tu sitio incluido.
@@ -967,7 +1022,7 @@
               importantes y contacto.
             </p>
             <div class="portfolio-tag">
-              Modelo adaptable para liceos, escuelas técnicas o proyectos educativos.
+              Modelo adaptable para liceos, proyectos educativos, instituciones, etc.
             </div>
           </div>
           <div class="card">
@@ -989,34 +1044,6 @@
             <div class="portfolio-tag">
               Pensado para docentes, artistas y personas que quieren visibilizar su trabajo.
             </div>
-          </div>
-        </div>
-
-        <!-- Carrusel de capturas -->
-        <div class="portfolio-carousel">
-          <div class="carousel-track">
-            <div class="carousel-slide active">
-              <img src="foto1.jpg" alt="Captura de sitio web 1" />
-            </div>
-            <div class="carousel-slide">
-              <img src="foto2.jpg" alt="Captura de sitio web 2" />
-            </div>
-            <div class="carousel-slide">
-              <img src="foto3.jpg" alt="Captura de sitio web 3" />
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button type="button" class="carousel-btn" data-dir="prev">
-              ‹ Anterior
-            </button>
-            <div class="carousel-dots">
-              <button type="button" class="carousel-dot active" data-index="0"></button>
-              <button type="button" class="carousel-dot" data-index="1"></button>
-              <button type="button" class="carousel-dot" data-index="2"></button>
-            </div>
-            <button type="button" class="carousel-btn" data-dir="next">
-              Siguiente ›
-            </button>
           </div>
         </div>
       </section>
@@ -1097,7 +1124,7 @@
         "mailto:enzoromanal@gmail.com?subject=" + asunto + "&body=" + cuerpo;
     }
 
-    // Carrusel sencillo
+    // Carrusel sencillo (ahora no se usa porque no hay slides, pero queda por si lo reactivás)
     (function() {
       const slides = document.querySelectorAll(".carousel-slide");
       const dots = document.querySelectorAll(".carousel-dot");
@@ -1133,4 +1160,3 @@
   </script>
 </body>
 </html>
-
