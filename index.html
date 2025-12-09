@@ -1,1192 +1,807 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Enzo Román | Desarrollo Web</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Desarrollo sitios web profesionales para docentes, emprendimientos y proyectos educativos." />
-
-  <style>
-    :root {
-      --color-bg: #050816;
-      --color-bg-alt: #0b1020;
-      --color-primary: #4ade80;
-      --color-primary-soft: rgba(74, 222, 128, 0.1);
-      --color-text: #f9fafb;
-      --color-text-muted: #9ca3af;
-      --color-card: #111827;
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
-      --transition: all 0.25s ease;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
-      color: var(--color-text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1.5rem 1.5rem 3rem;
-    }
-
-    /* HEADER */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.75rem 1.25rem;
-      margin-bottom: 1.5rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0.75rem;
-      z-index: 10;
-    }
-
-    header .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    /* LOGO ER|devs */
-    .logo-wordmark {
-      display: flex;
-      align-items: baseline;
-      gap: 0.15rem;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-    }
-
-    .logo-er {
-      color: var(--color-primary);
-      font-size: 1.25rem;
-    }
-
-    .logo-divider {
-      color: #9ca3af;
-      font-size: 1.05rem;
-    }
-
-    .logo-devs {
-      color: #e5e7eb;
-      font-size: 1.05rem;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .brand-text strong {
-      font-size: 0.95rem;
-    }
-
-    .brand-text span {
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-    }
-
-    nav {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: var(--color-text-muted);
-    }
-
-    nav a {
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-
-    nav a:hover {
-      background: rgba(148, 163, 184, 0.15);
-      color: var(--color-text);
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.45rem 1.1rem;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #022c22;
-      font-weight: 600;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow: 0 12px 25px rgba(22, 163, 74, 0.35);
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01);
-      box-shadow: 0 18px 35px rgba(22, 163, 74, 0.5);
-    }
-
-    .btn-primary span {
-      font-size: 1rem;
-    }
-
-    /* MAIN GENERAL */
-    main {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-text {
-      padding-right: 1rem;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      color: var(--color-text-muted);
-      font-size: 0.8rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #4ade80, #22c55e, #2dd4bf);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      color: var(--color-text-muted);
-      font-size: 0.98rem;
-      margin-bottom: 1.3rem;
-      max-width: 32rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-
-    .tagline {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.2rem;
-      font-size: 0.78rem;
-      color: var(--color-text-muted);
-    }
-
-    .hero-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .hero-meta span::before {
-      content: "◆";
-      font-size: 0.55rem;
-      color: #22c55e;
-    }
-
-    .hero-card {
-      background: radial-gradient(circle at top, #1f2937 0, #020617 60%);
-      border-radius: var(--radius-xl);
-      padding: 1.5rem 1.4rem;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 20% 0%, rgba(34, 197, 94, 0.23), transparent 55%),
-                  radial-gradient(circle at 85% 100%, rgba(59, 130, 246, 0.2), transparent 55%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-card-subtitle {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      margin-bottom: 0.9rem;
-    }
-    .hero-kpis {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-bottom: 1.1rem;
-      font-size: 0.78rem;
-    }
-
-    .kpi {
-      padding: 0.6rem 0.5rem;
-      border-radius: 0.9rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      overflow-wrap: break-word;
-    }
-
-    .kpi strong {
-      display: block;
-      font-size: 0.9rem;
-      overflow-wrap: break-word;
-    }
-
-    .kpi span {
-      color: var(--color-text-muted);
-    }
-
-    /* Chips */
-    .chip {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      font-size: 0.72rem;
-      color: var(--color-text-muted);
-    }
-
-    .chip span {
-      padding: 0.12rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.33);
-    }
-
-    /* TAG verde */
-    .portfolio-tag {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.75rem;
-      margin-top: 0.55rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(74, 222, 128, 0.8);
-      color: #bbf7d0;
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.6);
-    }
-
-    /* Section */
-    section {
-      background: rgba(15, 23, 42, 0.92);
-      border-radius: var(--radius-xl);
-      padding: 1.6rem 1.4rem;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
-    }
-
-    section + section {
-      margin-top: 1.2rem;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-title {
-      font-size: 1.1rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      max-width: 23rem;
-    }
-
-    /* Servicios */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: var(--color-card);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55);
-      border-color: rgba(74, 222, 128, 0.5);
-    }
-
-    .card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .card p {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      margin-bottom: 0.6rem;
-    }
-
-    /* Proceso */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.75rem;
-      font-size: 0.8rem;
-    }
-
-    .steps > div {
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 0.9rem;
-      padding: 0.8rem 0.8rem 0.9rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .steps > div::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 0 0, rgba(74, 222, 128, 0.18), transparent 55%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .steps > div:hover {
-      transform: translateY(-2px);
-      border-color: rgba(74, 222, 128, 0.7);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
-    }
-
-    .step-number {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(74, 222, 128, 0.95);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      margin-bottom: 0.4rem;
-      background: radial-gradient(circle at 30% 0, rgba(74, 222, 128, 1), rgba(34, 197, 94, 0.9));
-      color: #022c22;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-    }
-
-    .step-title {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .steps p {
-      color: var(--color-text-muted);
-    }
-
-    /* Sobre mí */
-    .about-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .about-layout p {
-      color: var(--color-text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .about-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.8rem;
-    }
-
-    .about-highlights > div {
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 0.9rem;
-      padding: 0.7rem 0.85rem 0.75rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
-    }
-
-    .about-highlights > div::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, #4ade80, #22c55e, #0ea5e9);
-    }
-
-    .about-highlights strong {
-      display: block;
-      margin-bottom: 0.15rem;
-      color: #e5e7eb;
-    }
-
-    .about-highlights span {
-      color: var(--color-text-muted);
-      font-size: 0.78rem;
-    }
-    /* Contacto */
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
-      gap: 1.25rem;
-      font-size: 0.85rem;
-    }
-
-    .contact-info {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .contact-info a {
-      text-decoration: underline;
-      text-decoration-color: rgba(74, 222, 128, 0.7);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-    }
-
-    label {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    input, textarea {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 0.7rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 0.55rem 0.7rem;
-      color: var(--color-text);
-      font-size: 0.8rem;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    input:focus, textarea:focus {
-      border-color: rgba(74, 222, 128, 0.85);
-      box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.6);
-    }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .btn-secondary {
-      margin-top: 0.25rem;
-      border-radius: 999px;
-      padding: 0.45rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--color-text);
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      transition: var(--transition);
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(74, 222, 128, 0.9);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
-      transform: translateY(-1px);
-    }
-
-    footer {
-      margin-top: 1.75rem;
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      text-align: center;
-    }
-
-    footer span {
-      color: #22c55e;
-    }
-
-    /* FAQ — Botón principal */
-    .faq-toggle-btn {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border-radius: 1rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--color-text);
-      text-align: left;
-      transition: var(--transition);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    }
-
-    .faq-toggle-btn:hover {
-      background: rgba(34,197,94,0.15);
-      border-color: rgba(74,222,128,0.7);
-    }
-
-    /* Contenedor del FAQ */
-    .faq-container {
-      margin-top: 1rem;
-      display: none;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    /* Accordion por pregunta */
-    .faq-item {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 1rem;
-      border: 1px solid rgba(148,163,184,0.3);
-      overflow: hidden;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      background: none;
-      border: none;
-      color: var(--color-text);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .faq-question:hover {
-      background: rgba(34,197,94,0.10);
-    }
-
-    .faq-answer {
-      display: none;
-      padding: 0.8rem 1rem;
-      color: var(--color-text-muted);
-      font-size: 0.85rem;
-      line-height: 1.55;
-      border-top: 1px solid rgba(148,163,184,0.25);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.8rem;
-      }
-
-      .hero-card {
-        margin-top: 0.3rem;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 1rem;
-        padding-inline: 1rem;
-        gap: 0.5rem;
-      }
-
-      nav {
-        width: 100%;
-        overflow-x: auto;
-      }
-
-      .steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-layout,
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-card {
-        display: none;
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      header {
-        position: static;
-        margin-bottom: 1rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ER|devs - Desarrollo Web Profesional y Soluciones Digitales por Enzo Román Celada.">
+    <meta name="author" content="Enzo Román Celada">
+    <title>ER|devs | Desarrollo Web & Proyectos Digitales</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0f172a; /* Slate 900 base */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            --primary: #4ade80; /* Neon Green */
+            --primary-dark: #22c55e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --glass: blur(12px);
+            --font-main: 'Inter', sans-serif;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            background-attachment: fixed; /* Parallax effect on bg */
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: var(--glass);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo .er { color: var(--primary); }
+        .logo .devs { color: #fff; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px; /* Offset fixed header */
+            position: relative;
+        }
+
+        /* Glow effect behind hero */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-mockup {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Code lines placeholder effect */
+        .code-lines {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .line { height: 12px; background: rgba(255,255,255,0.05); border-radius: 6px; }
+        .line.short { width: 40%; }
+        .line.medium { width: 70%; }
+        .line.long { width: 90%; }
+        .line.green { background: rgba(74, 222, 128, 0.2); width: 50%; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- SERVICES --- */
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px -10px rgba(74, 222, 128, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- BENEFITS --- */
+        .benefits {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .benefits-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .benefit-item h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-item span {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .benefit-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- ABOUT ME --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        
+        .about-highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img-box {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--card-border);
+        }
+
+        /* Estilo para que la imagen ocupe todo el cuadro */
+        .about-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-img-box::before {
+            content: 'ER';
+            font-size: 8rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.03);
+            /* Ocultamos el texto de fondo si hay imagen, o lo dejamos detrás */
+            position: absolute;
+            z-index: -1; 
+        }
+
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        /* --- CONTACT & FORM --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .info-item .icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-social {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid var(--card-border);
+            font-weight: 600;
+        }
+
+        .btn-social:hover {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .form-box {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: #fff;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.2);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 3rem 0;
+            background: #020617;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-socials a {
+            color: var(--text-muted);
+            margin-left: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-socials a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            text-align: center;
+            display: block;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .section-title { font-size: 2rem; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #0f172a;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--card-border);
+            }
+
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 2rem auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-mockup { display: none; }
+            
+            .about-container { grid-template-columns: 1fr; }
+            .about-img { max-width: 300px; margin: 0 auto; }
+            
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-socials a { margin: 0 1rem; }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="page">
 
-    <!-- HEADER -->
+    <!-- Header -->
     <header>
-      <div class="brand">
-        <div class="logo-wordmark">
-          <span class="logo-er">ER</span>
-          <span class="logo-divider">|</span>
-          <span class="logo-devs">devs</span>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="er">ER</span><span class="devs">|devs</span>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#contacto" style="color: var(--primary);">Contacto</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="brand-text">
-          <strong>Enzo Román</strong>
-          <span>Desarrollo Web & Proyectos Digitales</span>
-        </div>
-      </div>
-
-      <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#contacto">Contacto</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn-primary" href="https://wa.me/59891619677" target="_blank" rel="noopener">
-          Hablemos <span>↗</span>
-        </a>
-      </nav>
     </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero" id="inicio">
-        <div class="hero-text">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            Desarrollo web a medida para educación y emprendimientos.
-          </div>
-
-          <h1>
-            Sitios web <span>claros, modernos</span> y listos para comunicar tu proyecto.
-          </h1>
-
-          <p>
-            Soy Enzo, docente y desarrollador web. Diseño y construyo páginas pensadas para
-            instituciones educativas, emprendimientos y proyectos culturales que necesitan
-            una presencia digital profesional, sin complicarse con lo técnico.
-          </p>
-
-          <div class="hero-cta">
-            <a class="btn-primary" href="https://wa.me/59891619677?text=Hola%20Enzo,%20quiero%20consultar%20por%20un%20sitio%20web" target="_blank">
-              Solicitar presupuesto <span>💬</span>
-            </a>
-            <span class="tagline">Respuesta rápida y acompañamiento durante todo el proceso.</span>
-          </div>
-
-          <div class="hero-meta">
-            <span>Enfoque pedagógico y comunicacional.</span>
-            <span>Diseños adaptables a celular y computadora.</span>
-            <span>Opciones escalables según tu presupuesto.</span>
-          </div>
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Desarrollo Web & <br>Proyectos Digitales</h1>
+                <p>Impulsamos la presencia digital de tu negocio con soluciones modernas, rápidas y efectivas.</p>
+                <div class="hero-buttons">
+                    <a href="#servicios" class="btn btn-primary">Servicios</a>
+                    <a href="#contacto" class="btn btn-outline">Contacto</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-mockup">
+                    <div class="code-lines">
+                        <div class="line long"></div>
+                        <div class="line medium"></div>
+                        <div class="line short green"></div>
+                        <div class="line long"></div>
+                        <div class="line medium"></div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <aside class="hero-card">
-          <div class="hero-glow"></div>
-
-          <div class="hero-card-inner">
-            <div class="hero-card-title">Tu web como pieza clave de tu proyecto</div>
-            <div class="hero-card-subtitle">Una pequeña inversión que ordena tu comunicación y te acerca a más personas.</div>
-
-            <div class="hero-kpis">
-              <div class="kpi">
-                <strong>Webs claras</strong>
-                <span>Texto pensado para que cualquiera entienda qué hacés.</span>
-              </div>
-
-              <div class="kpi">
-                <strong>Responsive</strong>
-                <span>Se ve bien en celulares, tablets y computadoras.</span>
-              </div>
-
-              <div class="kpi">
-                <strong>Seguimiento</strong>
-                <span>No solo te entrego el sitio: te enseño a usarlo.</span>
-              </div>
+    <!-- Benefits Section -->
+    <section class="section-padding benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span>&#10003;</span>
+                    <h4>Todo Incluido</h4>
+                    <p>Hosting + Dominio incluidos</p>
+                </div>
+                <div class="benefit-item">
+                    <span>&#9881;</span>
+                    <h4>Optimizado</h4>
+                    <p>Velocidad y SEO técnico</p>
+                </div>
+                <div class="benefit-item">
+                    <span>&#128241;</span>
+                    <h4>Responsive</h4>
+                    <p>Adaptable a todo dispositivo</p>
+                </div>
+                <div class="benefit-item">
+                    <span>&#128274;</span>
+                    <h4>Seguridad</h4>
+                    <p>Certificados SSL y protección</p>
+                </div>
             </div>
-          </div>
-        </aside>
-      </section>
-      <!-- SERVICIOS -->
-      <section id="servicios">
-        <div class="section-header">
-          <div class="section-title">Servicios de desarrollo web</div>
-          <div class="section-subtitle">
-            Páginas web pensadas para comunicar mejor tu proyecto, con un lenguaje claro
-            y un diseño que respeta tu identidad visual.
-          </div>
         </div>
+    </section>
 
-        <div class="grid-3">
-          <div class="card">
-            <h3>Sitio web institucional</h3>
-            <p>
-              Ideal para liceos, instituciones educativas, ONG, talleres y proyectos culturales
-              que necesitan una presencia digital organizada, clara y profesional.
-            </p>
-
-            <div class="portfolio-tag">
-              Modelo adaptable para liceos, proyectos educativos, instituciones, etc.
+    <!-- Services Section -->
+    <section class="section-padding" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Soluciones integrales para tu crecimiento digital</p>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">&#128187;</div>
+                    <h3>Diseño Web Profesional</h3>
+                    <p>Sitios estéticos y funcionales que reflejan la identidad de tu marca.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">&#128722;</div>
+                    <h3>E-commerce</h3>
+                    <p>Tiendas online completas para vender tus productos las 24 horas.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">&#128640;</div>
+                    <h3>Landing Pages</h3>
+                    <p>Páginas de alto impacto diseñadas específicamente para convertir visitas en clientes.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">&#9889;</div>
+                    <h3>Velocidad & SEO</h3>
+                    <p>Optimización técnica básica para que Google ame tu sitio web.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">&#128295;</div>
+                    <h3>Mantenimiento</h3>
+                    <p>Actualizaciones y mejoras continuas para que tu sitio nunca se detenga.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon">&#127891;</div>
+                    <h3>Proyectos Educativos</h3>
+                    <p>Desarrollo de plataformas y experiencias digitales para el aprendizaje.</p>
+                </div>
             </div>
-
-            <div class="chip">
-              <span>Secciones personalizadas</span>
-              <span>Noticias / Novedades</span>
-              <span>Formulario de contacto</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Landing page para eventos o servicios</h3>
-            <p>
-              Una página directa y enfocada para promocionar un curso, taller, evento o servicio específico.
-              Ideal para captar la atención y convertir visitas en consultas.
-            </p>
-
-            <div class="portfolio-tag">
-              Ideal para talleres, cursos, charlas y eventos específicos.
-            </div>
-
-            <div class="chip">
-              <span>Enlace a redes</span>
-              <span>CTA a WhatsApp</span>
-              <span>Optimizada para celular</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Portafolio profesional</h3>
-            <p>
-              Sitio visual y moderno para mostrar tu trabajo como docente, artista, freelancer
-              o emprendedor. Centrado en tu identidad, trayectoria y proyectos.
-            </p>
-
-            <div class="portfolio-tag">
-              Pensado para docentes, artistas y personas que quieren visibilizar su trabajo.
-            </div>
-
-            <div class="chip">
-              <span>Galería de proyectos</span>
-              <span>Biografía</span>
-              <span>Contacto directo</span>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- PROCESO -->
-      <section id="proceso">
-        <div class="section-header">
-          <div class="section-title">Cómo trabajamos</div>
-          <div class="section-subtitle">
-            Un proceso claro, simple y acompañado en cada paso.
-          </div>
+    <!-- About Section -->
+    <section class="section-padding" id="sobre-mi" style="background: rgba(30, 41, 59, 0.3);">
+        <div class="container about-container">
+            <div class="about-text">
+                <h3>Sobre Mí</h3>
+                <p>¡Hola! Mi nombre es <span class="about-highlight">Enzo Román Celada</span>. Soy desarrollador web y docente en Uruguay.</p>
+                <p>Combino mi pasión por la tecnología con mi vocación educativa. Soy Profesor de Historia y Ciencias de la Computación, además de estudiar Relaciones Laborales.</p>
+                <p>Como freelancer bajo mi marca <strong>ER|devs</strong>, me especializo en crear soluciones web claras, modernas y orientadas a resultados para emprendedores, negocios e instituciones que buscan destacar.</p>
+            </div>
+            <div class="about-img">
+                <div class="about-img-box">
+                    <!-- Imagen real desde el repositorio -->
+                    <img src="foto1.jpg" alt="Enzo Román Celada">
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="steps">
-          <div>
-            <div class="step-number">1</div>
-            <div class="step-title">Relevamiento</div>
-            <p>
-              Conversamos sobre tu idea, tus objetivos, el público al que querés llegar y el tipo de sitio que necesitás.
-            </p>
-          </div>
+    <!-- Contact & Form Section -->
+    <section class="section-padding" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Estamos listos para escuchar tu proyecto</p>
 
-          <div>
-            <div class="step-number">2</div>
-            <div class="step-title">Propuesta</div>
-            <p>
-              Presento estructura, secciones, tiempos y un presupuesto ajustado a tu realidad.
-            </p>
-          </div>
+            <div class="contact-container">
+                <!-- Contact Info Left -->
+                <div class="contact-info">
+                    <h3>Información Directa</h3>
+                    
+                    <div class="info-item">
+                        <span class="icon">&#9993;</span>
+                        <span>enzoromanal@gmail.com</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="icon">&#64;</span>
+                        <span>Instagram: @er.devs</span>
+                    </div>
 
-          <div>
-            <div class="step-number">3</div>
-            <div class="step-title">Desarrollo</div>
-            <p>
-              Diseño y programación del sitio. Ajustes visuales, revisión de contenidos y pruebas en distintos dispositivos.
-            </p>
-          </div>
+                    <div class="info-item">
+                        <span class="icon">&#128222;</span>
+                        <span>Uruguay (WhatsApp disponible)</span>
+                    </div>
 
-          <div>
-            <div class="step-number">4</div>
-            <div class="step-title">Entrega y soporte</div>
-            <p>
-              Publicación del sitio, guía de uso y un mes de soporte técnico para asegurar que todo funcione perfecto.
-            </p>
-          </div>
+                    <div class="social-buttons">
+                        <a href="https://instagram.com/er.devs" target="_blank" class="btn-social">
+                            Instagram
+                        </a>
+                        <!-- Número de WhatsApp actualizado -->
+                        <a href="https://wa.me/59891619677" target="_blank" class="btn-social">
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form Right -->
+                <div class="form-box">
+                    <!-- Formulario simple que abre el cliente de correo -->
+                    <form action="mailto:enzoromanal@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="mensaje" class="form-control" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- SOBRE MI -->
-      <section id="sobre-mi">
-        <div class="section-header">
-          <div class="section-title">Sobre mí</div>
-          <div class="section-subtitle">
-            Docente, desarrollador web y creador de proyectos educativos y culturales.
-          </div>
-        </div>
-
-        <div class="about-layout">
-          <div>
-            <p>
-              Soy Enzo Román, profesor de Historia y Ciencias de la Computación. Trabajo en educación,
-              tecnología, proyectos culturales y desarrollo de recursos digitales para instituciones.
-            </p>
-            <p>
-              Entiendo las necesidades comunicacionales de liceos, centros educativos, colectivos sociales
-              y emprendedores porque trabajo directamente en el aula y en territorio.
-            </p>
-            <p>
-              Mi objetivo es que tu sitio web te represente, comunique con claridad y sea una herramienta útil.
-            </p>
-          </div>
-
-          <div class="about-highlights">
-            <div>
-              <strong>¿Qué aporto como desarrollador?</strong>
-              <span>Visión pedagógica, comunicación clara y acompañamiento estratégico.</span>
-            </div>
-
-            <div>
-              <strong>¿Con quiénes trabajo?</strong>
-              <span>Docentes, centros educativos, emprendedores, proyectos culturales y sociales.</span>
-            </div>
-
-            <div>
-              <strong>Formato de trabajo</strong>
-              <span>Reuniones virtuales o presenciales, entregas por etapas y revisión conjunta.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACTO -->
-      <section id="contacto">
-        <div class="section-header">
-          <div class="section-title">¿Hablamos de tu sitio web?</div>
-          <div class="section-subtitle">
-            Contame brevemente tu idea y te respondo con una propuesta ajustada.
-          </div>
-        </div>
-
-        <div class="contact-layout">
-          <div class="contact-info">
-            <p>
-              Podés escribirme directamente por WhatsApp o correo electrónico,
-              o completar el formulario.
-            </p>
-
-            <p><strong>WhatsApp:</strong>
-              <a href="https://wa.me/59891619677" target="_blank">+598 91 619 677</a>
-            </p>
-
-            <p><strong>Email:</strong>
-              <a href="mailto:enzoromanal@gmail.com">enzoromanal@gmail.com</a>
-            </p>
-
-            <p>
-              Información útil para incluir:<br>
-              • Tipo de proyecto.<br>
-              • Si tenés logo o estética definida.<br>
-              • Plazo aproximado de publicación.
-            </p>
-          </div>
-
-          <form onsubmit="handleSubmit(event)">
-            <label>
-              Nombre
-              <input type="text" id="nombre" required>
-            </label>
-
-            <label>
-              Correo electrónico
-              <input type="email" id="email" required>
-            </label>
-
-            <label>
-              Mensaje
-              <textarea id="mensaje" placeholder="Contame brevemente qué tipo de sitio necesitás."></textarea>
-            </label>
-
-            <button type="submit" class="btn-secondary">Enviar mensaje</button>
-          </form>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq">
-        <button class="faq-toggle-btn" onclick="toggleFAQ()">Preguntas frecuentes</button>
-
-        <div class="faq-container" id="faqContainer">
-
-          <!-- FAQ ITEMS -->
-          <div class="faq-item">
-            <button class="faq-question">¿Qué servicios ofrecen?</button>
-            <div class="faq-answer">
-              Ofrezco desarrollo de sitios web estáticos, profesionales y rápidos, con posibilidad
-              de escalar en el futuro según tus necesidades. Trabajo en sitios institucionales,
-              landing pages y portafolios profesionales, con acompañamiento en estructura,
-              contenidos y diseño.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Cuánto demora la creación de un sitio web?</button>
-            <div class="faq-answer">
-              Una landing page puede estar lista entre 5 y 10 días hábiles.  
-              Un sitio institucional o portafolio lleva entre 2 y 4 semanas según su complejidad.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Necesito tener logo o identidad visual antes de empezar?</button>
-            <div class="faq-answer">
-              No es obligatorio. Si ya tenés identidad visual, la uso.  
-              Si no, puedo sugerirte paletas, tipografías y estilos coherentes con tu proyecto.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Cómo se realiza el pago?</button>
-            <div class="faq-answer">
-              Trabajo con un adelanto al iniciar y el resto al entregar el sitio.  
-              Para instituciones puedo adaptar la modalidad según necesidad.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Podré editar el contenido por mi cuenta?</button>
-            <div class="faq-answer">
-              Sí. Podés optar por:<br>
-              • Que yo gestione los cambios según lo acordado.<br>
-              • Autogestionar el sitio: te entrego todo listo y una guía básica de edición.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Incluye hosting y dominio?</button>
-            <div class="faq-answer">
-              Podés encargarte vos del hosting y dominio, o puedo gestionarlo yo como parte del presupuesto final.  
-              Te asesoro sobre las mejores opciones.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿El sitio se ve bien en el celular?</button>
-            <div class="faq-answer">
-              Sí. Todos los sitios son totalmente responsive y testeo cada diseño en distintos dispositivos.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Qué información necesito para empezar?</button>
-            <div class="faq-answer">
-              Nombre del proyecto, textos principales, fotos o materiales disponibles y enlaces a redes.  
-              Si no tenés todo definido, te ayudo a organizarlo.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Ofrecen soporte o mantenimiento?</button>
-            <div class="faq-answer">
-              Sí. Incluyo un mes de soporte técnico gratuito.  
-              Luego podés solicitar mantenimiento puntual o mensual según tus necesidades.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Puedo agregar más secciones en el futuro?</button>
-            <div class="faq-answer">
-              Sí. Los sitios están pensados para crecer con tu proyecto: se pueden agregar secciones, páginas
-              nuevas o funciones especiales.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Qué pasa si no sé qué tipo de sitio necesito?</button>
-            <div class="faq-answer">
-              Te guío evaluando objetivos, público y recursos.  
-              A partir de eso te recomiendo la mejor estructura para tu proyecto.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Trabajan con empresas de cualquier tamaño?</button>
-            <div class="faq-answer">
-              Mi enfoque principal está en emprendimientos pequeños y medianos, instituciones educativas
-              y proyectos culturales.  
-              Proyectos más grandes pueden evaluarse según tiempos y requerimientos.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question">¿Ofrecen garantías?</button>
-            <div class="faq-answer">
-              Sí. Todos los proyectos incluyen garantía de funcionamiento y un mes de soporte técnico para
-              asegurar que todo esté perfecto.  
-              Luego podés contratar mantenimiento puntual o mensual.
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-    </main>
-
+    <!-- Footer -->
     <footer>
-      © <span>Enzo Román</span> · Desarrollo Web & Proyectos Educativos
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <span class="er">ER</span><span class="devs">|devs</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/er.devs">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                    <span style="margin-left: 1rem; color: var(--text-muted);">@er.devs</span>
+                </div>
+            </div>
+            <span class="copyright">&copy; 2024 ER|devs - Enzo Román Celada. Todos los derechos reservados.</span>
+        </div>
     </footer>
 
-  </div>
+    <!-- Simple JavaScript for Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            const links = document.querySelectorAll('.nav-links a');
 
-  <!-- SCRIPT FAQ -->
-  <script>
-    function toggleFAQ() {
-      const container = document.getElementById("faqContainer");
-      container.style.display = container.style.display === "flex" ? "none" : "flex";
-    }
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
 
-    // Acordeón interno
-    const faqQuestions = document.querySelectorAll(".faq-question");
-    faqQuestions.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const answer = btn.nextElementSibling;
-
-        // Cierra los demás
-        document.querySelectorAll(".faq-answer").forEach((a) => {
-          if (a !== answer) a.style.display = "none";
+            // Close mobile menu when clicking a link
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
         });
-
-        // Alterna el actual
-        answer.style.display = answer.style.display === "block" ? "none" : "block";
-      });
-    });
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      const nombre = document.getElementById("nombre").value;
-      const email = document.getElementById("email").value;
-      const mensaje = document.getElementById("mensaje").value;
-
-      const asunto = encodeURIComponent("Consulta por desarrollo web");
-      const cuerpo = encodeURIComponent(
-        "Nombre: " + nombre + "\nEmail: " + email + "\n\nMensaje:\n" + mensaje
-      );
-
-      window.location.href = "mailto:enzoromanal@gmail.com?subject=" + asunto + "&body=" + cuerpo;
-    }
-  </script>
-
+    </script>
 </body>
 </html>
-
